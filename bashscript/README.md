@@ -1,0 +1,1 @@
+We had 2 possible demo environments. When we walk in we will be told if we're using environment P or Q. Script should pull from the correct .priv and .pub files probably with a command line argument.
