@@ -71,7 +71,7 @@ Commencing Test Sequence:
   // VALID ADD //
   fmt.Printf(
 `Adding simple, non-transparent stroke
-[M 0 0 L 20 20] ---
+[M 50 100 l 20 20] ---
 `)
   stallForUser("")  
   go waitingDots(waitingChannel)
@@ -79,7 +79,7 @@ Commencing Test Sequence:
   shapeHash, _, _, err := canvas.AddShape(validateNum, bal.PATH, "M 50 100 l 20 20", "transparent", "red")
   waitingChannel <- true
 
-  if err != nil {
+  if err != nil && err.Error() != "replay attack detected"{
     fmt.Print(err)
     os.Exit(1)
   }

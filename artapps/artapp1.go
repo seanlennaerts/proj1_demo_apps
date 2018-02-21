@@ -74,7 +74,7 @@ Commencing Test Sequence:
   shapeHash, _, _, err := canvas.AddShape(validateNum, bal.PATH, "M 0 0 L 20 20", "transparent", "red")
   waitingChannel <- true
 
-  if err != nil {
+  if err != nil && err.Error() != "replay attack detected" {
     fmt.Print(err)
     os.Exit(1)
   }
@@ -149,7 +149,22 @@ Commencing Test Sequence:
   waitingChannel  <- true
 
   catchError(err)
+
+// INTERSECTION with other node's shape //
+  fmt.Printf(
+`Intersecting another users's shape 
+[M 70 100 l 20 -20] ---
+`)
+  stallForUser("")  
+  go waitingDots(waitingChannel)
+  validateNum = 4
+  _, _, _, err = canvas.AddShape(validateNum, bal.PATH, "M 70 100 l 20 -20", "transparent", "red")
+  waitingChannel <- true
+
+  catchError(err)
 }
+
+
 
 func buildCoordinates(x, y int) string {
   return fmt.Sprintf("(x,y): [%d,%d]", x, y) 
