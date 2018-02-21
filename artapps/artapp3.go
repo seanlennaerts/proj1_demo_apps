@@ -100,7 +100,7 @@ Commencing Test Sequence:
   // stallForUser("")  
   // go waitingDots(waitingChannel)
   validateNum = 4
-  shapeHash, _, _, err = canvas.AddShape(validateNum, bal.PATH, fmt.Sprintf("M %d %d h 50", x, y + 20), color, "red")
+  shapeHash, _, _, err = canvas.AddShape(validateNum, bal.PATH, fmt.Sprintf("M %d %d h 50", x, y + 20), "transparent" , color)
   // waitingChannel <- true
 
   if err != nil && err.Error() != "replay attack detected"{
@@ -120,7 +120,7 @@ Commencing Test Sequence:
   // stallForUser("")  
   // go waitingDots(waitingChannel)
   validateNum = 4 
-   shapeHash, _, _, err = canvas.AddShape(validateNum, bal.PATH, fmt.Sprintf("M %d %d h 50", x, y + 20), color, "red")
+   shapeHash, _, _, err = canvas.AddShape(validateNum, bal.PATH, fmt.Sprintf("M %d %d h 50", x, y + 20), "transparent", color)
   // waitingChannel <- true
 
   if err != nil && err.Error() != "replay attack detected"{
