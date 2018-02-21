@@ -65,13 +65,13 @@ Commencing Test Sequence:
 
 // VALID ADD //
   fmt.Printf(
-`Adding simple, non-transparent stroke from ` + buildCoordinates(0,0) + `to ` + buildCoordinates(20,20) +`
-[M 0 0 L 20 20] ---
+`Adding simple, non-transparent square
+[M 10 10 h 20 v 20 h -20 z] ---
 `)
   stallForUser("")  
   go waitingDots(waitingChannel)
   validateNum = 4
-  shapeHash, _, _, err := canvas.AddShape(validateNum, bal.PATH, "M 0 0 L 20 20", "transparent", "red")
+  shapeHash, _, _, err := canvas.AddShape(validateNum, bal.PATH, "M 0 0 L 20 20", "blue", "red")
   waitingChannel <- true
 
   if err != nil && err.Error() != "replay attack detected" {
@@ -96,7 +96,6 @@ Commencing Test Sequence:
 `)
   stallForUser("")
   go waitingDots(waitingChannel)
-  validateNum = 4
   _, err = canvas.DeleteShape(validateNum, shapeHash)
   waitingChannel <- true
   if err !=nil {
@@ -105,7 +104,7 @@ Commencing Test Sequence:
   }
 
 // INVALID SHAPE DELETE //
-      fmt.Printf(
+  fmt.Printf(
 `Deleting the shape again [#` + shapeHash  + `]
 `)
   stallForUser("")
@@ -141,7 +140,6 @@ Commencing Test Sequence:
   fmt.Printf(
 `Deleting shape of other node.
 `)
-
   shapeHash2 := stallForUser("ShapeHash [INPUT]:")
 
   go waitingDots(waitingChannel)
@@ -153,12 +151,13 @@ Commencing Test Sequence:
 // INTERSECTION with other node's shape //
   fmt.Printf(
 `Intersecting another users's shape 
-[M 70 100 l 20 -20] ---
+[M 50 400 h 10 v 10 h -10 z] with
+[M 55 400 h 10 v 10 h -10 z] ---
 `)
   stallForUser("")  
   go waitingDots(waitingChannel)
   validateNum = 4
-  _, _, _, err = canvas.AddShape(validateNum, bal.PATH, "M 70 100 l 20 -20", "transparent", "red")
+  _, _, _, err = canvas.AddShape(validateNum, bal.PATH, "M 50 120 l 20 -20", "blue", "red")
   waitingChannel <- true
 
   catchError(err)

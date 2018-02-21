@@ -70,13 +70,13 @@ Commencing Test Sequence:
 
   // VALID ADD //
   fmt.Printf(
-`Adding simple, non-transparent stroke
-[M 50 100 l 20 20] ---
+`Adding simple, green square
+[M 50 400 h 10 v 10 h -10 z] ---
 `)
   stallForUser("")  
   go waitingDots(waitingChannel)
   validateNum = 4
-  shapeHash, _, _, err := canvas.AddShape(validateNum, bal.PATH, "M 50 100 l 20 20", "transparent", "red")
+  shapeHash, _, _, err := canvas.AddShape(validateNum, bal.PATH, "M 50 400 h 10 v 10 h -10 z", "green", "red")
   waitingChannel <- true
 
   if err != nil && err.Error() != "replay attack detected"{
