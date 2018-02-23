@@ -1,0 +1,26 @@
+scp updated ink-miner.go (uncommented owner)
+
+
+scp updated webapp.go:
+@@ -35,6 +35,7 @@ var (
+ )
+
+ func getSvgStrings() string {
++       svgStrings = make([]string, 0)
+        genHash, err := Canvas.GetGenesisBlock()
+        fmt.Println(genHash)
+
+@@ -60,7 +61,7 @@ func getSvgStrings() string {
+                reversedString = append(reversedString, svgStrings[i])
+        }
+
+-       allStrings := strings.Join(svgStrings, "\n")
++       allStrings := strings.Join(reversedString, "\n")
+        return allStrings
+ }
+
+
+
+scp updated art-app-tester2.go 30 seconds to 5seconds
+
+scp janik's art apps
